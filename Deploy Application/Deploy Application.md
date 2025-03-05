@@ -80,6 +80,31 @@ oc get service
 oc describe service nginx-app
 ```
 
+---
+### Troubleshooting Containers and Pods
+```yaml
+oc describe pod pod-name # Gather Pod Information
+oc get events -n namespace # View Events
+oc rsh pod-name # Access Pod Shell
+oc logs pod # Retrieve logs with oc logs.
+oc exec # to run commands.
+
+crictl ps --name <container_name>
+crictl inspect <container_id>
+```
+---
+### Tools for Image Management
+```yaml
+
+Skopeo - Manage images without a running container runtime:
+skopeo inspect docker://<image>
+skopeo copy docker://<source_image> docker://<destination_image>
+
+oc image - OpenShift CLI tool for image management:
+oc image info <image>
+oc image extract <image> --path /path/to/extract
+```
+---
 ### Other Essential Commands
 ```yaml
 oc delete all --all # To delete all the resources at once in a project
