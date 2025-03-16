@@ -3,13 +3,12 @@
 Secrets: Used to store sensitive data like passwords, API keys, and SSH keys. Secrets are base64-encoded and can be mounted as files or injected as environment variables.
 
 Types of Secrets (Most Commonly Used)
-Opaque (Default) – User-defined key-value pairs.
-TLS Secret – Stores TLS certificates and keys.
-Docker Registry Secret – Used for pulling images from private registries.
-Basic Authentication Secret – Stores credentials like username/password.
-SSH Key Secret – Stores SSH private/public keys.
-Service Account Token Secret – Provides access to API resources.
-
+- Opaque (Default) – User-defined key-value pairs.
+- TLS Secret – Stores TLS certificates and keys.
+- Docker Registry Secret – Used for pulling images from private registries.
+- Basic Authentication Secret – Stores credentials like username/password.
+- SSH Key Secret – Stores SSH private/public keys.
+- Service Account Token Secret – Provides access to API resources.
 
 ConfigMaps: Used to store non-sensitive configuration data such as application properties, environment settings, and other configuration files.
 
@@ -17,8 +16,6 @@ ConfigMaps: Used to store non-sensitive configuration data such as application p
 oc create secret generic my-secret --from-literal=key=value # Create Secrets
 oc create configmap my-config --from-file=config.properties # Create ConfigMaps
 ```
-
-Create Secrets
 ---
 
 ### Example of deploying an NGINX app on OpenShift/Kubernetes that:
