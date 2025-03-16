@@ -13,6 +13,12 @@ Service Account Token Secret – Provides access to API resources.
 
 ConfigMaps: Used to store non-sensitive configuration data such as application properties, environment settings, and other configuration files.
 
+```bash
+oc create secret generic my-secret --from-literal=key=value # Create Secrets
+oc create configmap my-config --from-file=config.properties # Create ConfigMaps
+```
+
+Create Secrets
 ---
 
 ### Example of deploying an NGINX app on OpenShift/Kubernetes that:
