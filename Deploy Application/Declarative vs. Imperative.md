@@ -119,3 +119,75 @@ spec:
       targetPort: 80  # Port on the Pod to forward traffic to
   type: ClusterIP  # Service type (ClusterIP for internal access)
 ```
+---
+---
+
+## Updating Resources
+- **Apply Changes:**
+  ```bash
+  kubectl apply -f manifest.yaml
+  ```
+  Tracks changes via the `kubectl.kubernetes.io/last-applied-configuration` annotation.
+
+- **Dry-Run and Validation:**
+  Use `--dry-run=server --validate=true` to preview changes before applying.
+
+- **Force Pod Restart:**
+  Some changes (e.g., ConfigMap updates) require a manual restart:
+  ```bash
+  oc rollout restart deployment <deployment-name>
+  ```
+
+---
+
+## Comparing and Patching Resources
+- **Compare Manifests and Live State:**
+  ```bash
+  kubectl diff -f manifest.yaml
+  ```
+
+- **Patch Resources:**
+  Apply quick fixes with:
+  ```bash
+  oc patch <resource> -p '{"spec": {"replicas": 3}}'
+  ```
+
+---
+
+## Kustomize Overlays
+Kustomize simplifies environment-specific customizations for Kubernetes deployments. Instead of duplicating manifests, Kustomize applies overlays to a single base configuration.
+
+### Structure:
+1. **Base Directory:**
+   Contains `kustomization.yaml` and resource files for the application.
+2. **Overlay Directories:**
+   Customize the base with environment-specific changes (e.g., dev, test, prod).
+
+### Key Features:
+- **Name Modifiers:** Add prefixes or suffixes to resource names.
+- **Namespace Settings:** Set namespaces for resources.
+- **Common Labels/Annotations:** Apply labels or annotations universally.
+- **Resource Generators:**
+  - `configMapGenerator` and `secretGenerator` create ConfigMaps and Secrets.
+  - Example:
+    ```yaml
+    configMapGenerator:
+      - name: app-config
+        files:
+          - config.properties
+    ```
+
+### Benefits:
+- Simplifies multi-environment deployments.
+- Reduces risk by avoiding duplicated manifests.
+- Enhances maintainability and clarity.
+
+---
+
+## Summary
+- **Declarative Approach:** Use manifests for version-controlled, reproducible deployments.
+- **Kustomize Integration:** Leverage Kustomize for environment-specific configurations.
+- **Resource Management Tools:** Use commands like `kubectl diff`, `oc patch`, and `kubectl apply` to manage changes effectively.
+
+Declarative resource management ensures consistent, reliable, and scalable Kubernetes deployments, ideal for production environments.
+
