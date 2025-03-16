@@ -1,5 +1,7 @@
 ## Persistent Storage - NFS (Static)
 
+- Provision Static Persistent PVC with NFS storage
+
 ### Static Provisioning
 
 ```yaml
