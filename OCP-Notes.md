@@ -33,6 +33,7 @@ oc adm upgrade # To see the update history and details
 oc get pods -n openshift-cluster-version # Verifies the pods related to the cluster version operator are running correctly.
 
 Events Logs:
+oc get events --sort-by='.lastTimestamp' # with timestamp
 oc get events -A # Check the cluster-wide events for errors or warnings
 oc adm must-gather # Cluster diagnostic information
 journalctl -u kubelet # Inspect Node Logs
