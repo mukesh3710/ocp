@@ -124,8 +124,7 @@ Cluster Autoscaler:
 - Automatically scales nodes.
 oc get clusterautoscaler
 
-Node Tuning Operator:
-- Tunes kernel parameters for performance.
+Node Tuning Operator: Tunes kernel parameters for performance.
 oc get tuneds -n openshift-cluster-node-tuning-operator
 ```
 ---
@@ -133,18 +132,14 @@ oc get tuneds -n openshift-cluster-node-tuning-operator
 ### Networking & Ingress
 
 ```yaml
-
-Ingress Operator:
-- Handles routing for applications using OpenShift’s built-in HAProxy router.
+Ingress Operator: Handles routing for applications using OpenShift’s built-in HAProxy router.
 oc get ingresscontroller -n openshift-ingress-operator
 oc get clusteroperator ingress
 
-Cluster Network Operator (CNO):
-- Manages networking (OVN-Kubernetes, OpenShift SDN).
+Cluster Network Operator (CNO): Manages networking (OVN-Kubernetes, OpenShift SDN).
 oc get network.operator.openshift.io
 
-Multus:
-- Enables multiple network interfaces per pod.
+Multus: Enables multiple network interfaces per pod.
 oc get pods -n openshift-multus
 ```
 
@@ -153,19 +148,17 @@ oc get pods -n openshift-multus
 ### Security & Certificates
 
 ```yaml
-Authentication & OAuth:
-- Manages user authentication via OAuth.
+Authentication & OAuth: Manages user authentication via OAuth.
 oc get oauth
 oc get clusteroperator authentication
 
-Certificate Management:
-- Ensures secure communication within the cluster.
+Certificate Management: Ensures secure communication within the cluster.
 oc get certificates -n openshift-ingress-operator
 oc get csr
 oc describe csr <csr-name>
+oc get csr --no-headers | awk '/Pending/ {print $1}' | xargs oc adm certificate approve # Approved all pending certificate 
 
-Compliance Operator:
-- Enforces security compliance policies.
+Compliance Operator: Enforces security compliance policies.
 oc get compliancesuite -n openshift-compliance
 ```
 ---
