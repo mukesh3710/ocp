@@ -14,6 +14,7 @@ Egress Policy
 ---
 
 Key Components of Network Policy:
+
 Pod Selector (Pod Label)
 - Specifies which pods the policy applies to using labels.
 - Example: matchLabels: {app: web}
