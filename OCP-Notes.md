@@ -1,5 +1,23 @@
-# OCP Notes
+# OCP Commands
 ---
+
+Cluster Management:
+```bash
+oc cluster-info                         # Displays cluster information
+oc status                                # Shows an overview of the current cluster status
+oc whoami                                # Displays the currently logged-in user
+oc version                               # Displays OpenShift client and server version
+oc get clusterversion                    # Shows OpenShift cluster version
+oc get nodes                             # Lists all nodes in the cluster
+oc describe node <node-name>             # Shows details of a specific node
+oc get csr                               # Lists Certificate Signing Requests (CSRs)
+oc get co                                # Shows the status of cluster operators
+oc get infrastructure                    # Shows OpenShift infrastructure details
+oc adm top node                          # Displays CPU and memory usage of nodes
+oc adm cordon <node-name>                # Marks a node as unschedulable
+oc adm uncordon <node-name>              # Marks a node as schedulable again
+oc adm drain <node-name> --force         # Safely evicts all pods from a node
+```
 
 ### Important Commands
 ```yaml
