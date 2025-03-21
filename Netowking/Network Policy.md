@@ -26,6 +26,6 @@ IPBlock (Subnet)
 - Defines allowed/denied IP ranges (CIDR format).
 - Example: ipBlock: {cidr: 192.168.1.0/24}
 
-- Rules (Ingress/Egress)
+Rules (Ingress/Egress)
 - Allow: Explicitly allows traffic.
 - Deny: Implicitly denies all traffic if no allow rules exist.
