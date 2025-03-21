@@ -18,6 +18,90 @@ oc adm cordon <node-name>                # Marks a node as unschedulable
 oc adm uncordon <node-name>              # Marks a node as schedulable again
 oc adm drain <node-name> --force         # Safely evicts all pods from a node
 ```
+Project and Namespace Management:
+```bash
+oc get projects                          # Lists all projects (namespaces)
+oc new-project <project-name>            # Creates a new project
+oc delete project <project-name>         # Deletes a project
+oc project <project-name>                # Switches to a specific project
+oc get namespace                         # Lists all namespaces
+```
+User and Role Management:
+```bash
+oc get users                             # Lists all users
+oc adm policy add-cluster-role-to-user cluster-admin <user>  # Assigns cluster-admin role to a user
+oc adm policy remove-cluster-role-from-user cluster-admin <user>  # Removes cluster-admin role
+oc adm policy add-role-to-user <role> <user> -n <namespace>  # Assigns a role to a user in a namespace
+oc get rolebindings -n <namespace>       # Lists role bindings in a namespace
+oc describe rolebinding <rolebinding-name> -n <namespace>  # Shows details of a role binding
+```
+Pod and Deployment Management:
+```bash
+oc get pods -n <namespace>               # Lists all pods in a namespace
+oc get pod <pod-name> -o wide -n <namespace>  # Shows detailed pod status
+oc describe pod <pod-name> -n <namespace>  # Displays detailed information about a specific pod
+oc logs <pod-name> -n <namespace>        # Fetches logs from a pod
+oc logs -f <pod-name> -n <namespace>     # Streams real-time logs from a pod
+oc exec -it <pod-name> -n <namespace> -- /bin/bash  # Opens an interactive shell inside a pod
+oc delete pod <pod-name> -n <namespace>  # Deletes a pod
+oc get deploy -n <namespace>             # Lists all deployments
+oc scale --replicas=3 deployment <deploy-name> -n <namespace>  # Scales a deployment
+```
+Networking and Services:
+```bash
+oc get services -n <namespace>           # Lists all services
+oc describe service <service-name> -n <namespace>  # Shows details of a service
+oc get routes -n <namespace>             # Lists all routes in a namespace
+oc describe route <route-name> -n <namespace>  # Shows details of a route
+oc get networkpolicy -n <namespace>      # Lists all network policies
+oc describe networkpolicy <policy-name> -n <namespace>  # Shows details of a network policy
+```
+Storage Management:
+```bash
+oc get pvc -n <namespace>                # Lists Persistent Volume Claims (PVCs)
+oc describe pvc <pvc-name> -n <namespace>  # Shows details of a PVC
+oc get pv                                # Lists Persistent Volumes (PVs)
+oc describe pv <pv-name>                 # Shows details of a Persistent Volume
+oc get sc                                # Lists all StorageClasses
+oc describe sc <storageclass-name>       # Shows details of a StorageClass
+```
+Security and RBAC:
+```bash
+oc get scc                               # Lists all Security Context Constraints (SCCs)
+oc describe scc <scc-name>               # Shows details of a specific SCC
+oc get rolebindings -n <namespace>       # Lists all role bindings
+oc describe rolebinding <rolebinding-name> -n <namespace>  # Shows details of a role binding
+oc get clusterrolebindings               # Lists all cluster-wide role bindings
+oc get secrets -n <namespace>            # Lists secrets in a namespace
+oc describe secret <secret-name> -n <namespace>  # Shows details of a secret
+```
+ConfigMaps and Environment Variables:
+```bash
+oc get configmaps -n <namespace>         # Lists all ConfigMaps
+oc describe configmap <configmap-name> -n <namespace>  # Shows details of a ConfigMap
+oc get env deployment/<deploy-name> -n <namespace>  # Lists environment variables for a deployment
+oc set env deployment/<deploy-name> ENV_VAR=value -n <namespace>  # Updates an environment variable
+```
+Monitoring and Logging:
+```bash
+oc get events -n <namespace> --sort-by=.lastTimestamp  # Displays recent events sorted by time
+oc adm top pods -n <namespace>              # Shows CPU and memory usage of pods
+oc adm top node                              # Displays resource usage of nodes
+oc logs -f <pod-name> -n <namespace>         # Streams logs from a pod
+```
+OpenShift Operator Management:
+```bash
+oc get operators -n <namespace>              # Lists all installed operators
+oc describe operator <operator-name> -n <namespace>  # Shows details of an operator
+oc get subscription -n <namespace>           # Lists operator subscriptions
+oc get csv -n <namespace>                    # Lists ClusterServiceVersions (CSV) of installed operators
+```
+Backup and Restore:
+```bash
+oc get etcdbackup -n openshift-etcd          # Lists etcd backups
+oc describe etcdbackup <backup-name> -n openshift-etcd  # Shows details of an etcd backup
+```
+
 
 ### Important Commands
 ```yaml
